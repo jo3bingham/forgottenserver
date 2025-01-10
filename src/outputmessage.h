@@ -20,8 +20,9 @@ public:
 	uint8_t* getOutputBuffer() { return &buffer[outputBufferStart]; }
 
 	void writePaddingLength() {
-		auto padding = info.length % 8;
-		add_header(static_cast<uint8_t>(padding));
+		uint8_t padding = 8 - (info.length % 8) - 1;
+		addPaddingBytes(padding);
+		add_header(padding);
 	}
 	void writeMessageLength() { add_header(static_cast<uint16_t>((info.length - 4) / 8)); }
 

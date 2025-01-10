@@ -1891,7 +1891,7 @@ void ProtocolGame::sendIcons(uint32_t icons)
 {
 	NetworkMessage msg;
 	msg.addByte(0xA2);
-	msg.add<uint32_t>(icons);
+	msg.add<uint64_t>(icons);
 	msg.addByte(0);
 	writeToOutputBuffer(msg);
 }
